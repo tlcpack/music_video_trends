@@ -32,3 +32,8 @@ plt.xticks(rotation=45)
 sns.set(style="darkgrid", palette = 'rocket')
 ax = sns.lineplot(data=df_interest)
 ax.set_title('Music video trends over time', fontsize=20)
+
+kw_list = ["BTS"]
+pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='youtube')
+df_interest_region = pytrends.interest_by_region(resolution='COUNTRY', inc_low_vol=False)
+df = df_interest_region.sort_values(by='BTS', ascending=False).head(10).reset_index()
